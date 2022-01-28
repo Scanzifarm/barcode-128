@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <title>Encoder</title>
+    <script src="../../code-128-encoder.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Barcode+128" rel="stylesheet">
+    <style>
+      .container {display:flex;flex-direction:column;align-items:center;width:300px}
+      .barcode { font-family: 'Libre Barcode 128', cursive; font-size:50px; margin-top:10px}
+      .barcodepsw { font-family: 'Libre Barcode 128', cursive; font-size:50px; margin-top:10px}
+      .cleartext {}
+      .cleartextpsw {}
+    </style>
+    <script>
+      function change(){
+        var encoder = new Code128Generator()
+        var username = document.getElementById("input").value
+        var psw = document.getElementById("inputpsw").value
+        document.querySelector(".barcodepsw").innerHTML=encoder.encode(psw)
+        document.querySelector(".barcode").innerHTML=encoder.encode(username)
+        document.querySelector(".cleartextpsw").innerHTML=text
+        document.querySelector(".cleartext").innerHTML=text
+
+      }
+    </script>
+    
+    <script>
+function myFunction() {
+  var x = document.getElementById("inputpsw");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+  </head>
+  <body onload="change()">
+    <h2>Inserire username e password</h2>
+    Username: <input id="input" type="text" value="Test" onkeyup="change()"/>
+    <br>
+    Password:&nbsp; <input id="inputpsw" type="password" value="Test" onkeyup="change()"/>
+    <br>
+    <input type="checkbox" onclick="myFunction()">mostra Password
+    <div class="container">
+      <br>
+      <br>
+      Username:
+      <div class="barcode"></div>
+      <div class="cleartext"></div>
+      <br>
+      <br>
+      Password:
+      <div class="barcodepsw"></div>
+      <div class="cleartextpsw"></div>
+    </div>
+  </body>
+</html>
